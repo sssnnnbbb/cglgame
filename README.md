@@ -1,3 +1,3 @@
 # cglgame
 
-http://sssnnnbbb.github.io/mygames/?hello
+http://sssnnnbbb.github.io/cglgame/?hello
