@@ -1,9 +1,10 @@
 title = "DOT CATCHER";
 description = `
 [Click/Tap]
- Catch dot
+Catch dot
+
 Avoid red dots
-Avoid confrict
+,dots confrict
 `;
 
 characters = [
