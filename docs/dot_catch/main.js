@@ -3,8 +3,9 @@ description = `
 [Click/Tap]
 Catch dot
 
-Avoid red dots
-,dots confrict
+Avoid them;
+red dots
+dots confrict
 `;
 
 characters = [
