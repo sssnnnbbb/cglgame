@@ -67,9 +67,9 @@ function update() {
     nextStickTicks = 100;
   }
 
-  // ゲームオーバーの条件
+  // ゲームオーバーの条件：皿が棒の底（90ピクセル）より低くなったら
   sticks.forEach((stick) => {
-    if (stick.plate.pos.y > 80) {
+    if (stick.plate.pos.y > stick.pos.y) {
       play("explosion");
       end();
     }
