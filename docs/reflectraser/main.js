@@ -10,6 +10,8 @@ options = {
   seed: 10,
 };
 
+const version = "1.0.0";  // バージョン番号の設定
+
 let player;
 let direction;
 let speed;
@@ -46,6 +48,10 @@ function update() {
 
   // プレイヤーの座標をデバッグ用に確認
   console.log(`Player Position: (${player.x}, ${player.y})`);
+
+  // バージョン番号を画面の上に表示
+  color("black");
+  text(`Version: ${version}`, 3, 10);
 
   // プレイヤーの描画 (シンプルな四角形で描画)
   color("cyan");
