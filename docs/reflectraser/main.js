@@ -33,7 +33,7 @@ function update() {
     // プレイヤーキャラクターの初期位置と状態
     player = vec(50, 50); // 画面中央に初期化
     direction = vec(1, 0); // 右方向に進む
-    speed = 0.1;
+    speed = 0.1; // スピードを低く設定
     obstacles = [];
     nextObstacleTicks = 0;
     score = 0;
@@ -98,7 +98,7 @@ function update() {
   multiplier++;
 
   // 難易度に応じてスピードを上げる
-  speed = 1.5 + difficulty * 0.5;
+  speed = 0.1 + difficulty * 0.05;
 }
 
 function gameOver() {
