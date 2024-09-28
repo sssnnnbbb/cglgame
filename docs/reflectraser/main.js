@@ -51,9 +51,12 @@ function update() {
   // プレイヤーが画面外に出ないように位置を固定
   player.clamp(0, 99, 0, 99);
 
-  // プレイヤーキャラクターの描画（仮に四角で描画）
-  color("cyan"); // キャラクターの色を青に設定
-  box(player, 6); // 四角形でプレイヤーを描画
+  // プレイヤーの座標をログに出力して確認
+  console.log(`Player Position: ${player.x}, ${player.y}`);
+
+  // プレイヤーキャラクターの描画（大きな四角で描画してテスト）
+  color("cyan");
+  box(player, 12); // 12ピクセル四方の大きな四角で描画
 
   // プレイヤーの進行方向を変更（90度回転）
   if (input.isJustPressed) {
