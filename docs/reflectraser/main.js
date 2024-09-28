@@ -48,16 +48,12 @@ function update() {
   // プレイヤーの移動
   player.add(vec(speed).mul(direction));
   
+  // プレイヤーが画面外に出ないように位置を固定
+  player.clamp(0, 99, 0, 99);
+
   // プレイヤーキャラクターの描画
   color("black");
   char("a", player); // "a"キャラクターを描画
-
-  // 壁に衝突する場合、ゲームオーバー
-  if (!player.isInRect(0, 0, 100, 100) && ticks > 1) {
-    play("hit");
-    gameOver();
-    return;
-  }
 
   // プレイヤーの進行方向を変更（90度回転）
   if (input.isJustPressed) {
