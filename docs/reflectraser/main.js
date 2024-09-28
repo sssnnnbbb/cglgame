@@ -4,15 +4,6 @@ description = `
 [Tap] 90度回転
 `;
 
-characters = [
-  `
-  ll
- l  l
- l  l
-  ll
-`,
-];
-
 options = {
   isPlayingBgm: true,
   isReplayEnabled: true,
@@ -30,10 +21,10 @@ let gameOverFlag;
 
 function update() {
   if (!ticks) {
-    // プレイヤーキャラクターの初期位置と状態
-    player = vec(50, 50); // 画面中央に初期化
-    direction = vec(1, 0); // 右方向に進む
-    speed = 0.1; // スピードを低く設定
+    // プレイヤーキャラクターの初期位置と状態をリセット
+    player = { x: 50, y: 50 };  // 単純な座標オブジェクトに変更
+    direction = { x: 1, y: 0 }; // 右方向に進む設定
+    speed = 0.1; // スピードの初期化
     obstacles = [];
     nextObstacleTicks = 0;
     score = 0;
@@ -46,40 +37,43 @@ function update() {
   }
 
   // プレイヤーの移動
-  player.add(vec(speed).mul(direction));
+  player.x += speed * direction.x;
+  player.y += speed * direction.y;
   
   // プレイヤーが画面外に出ないように位置を固定
-  player.clamp(0, 99, 0, 99);
+  player.x = clamp(player.x, 0, 99);
+  player.y = clamp(player.y, 0, 99);
 
-  // プレイヤーの座標をログに出力して確認
-  console.log(`Player Position: ${player.x}, ${player.y}`);
+  // プレイヤーの座標をデバッグ用に確認
+  console.log(`Player Position: (${player.x}, ${player.y})`);
 
-  // プレイヤーキャラクターの描画（大きな四角で描画してテスト）
+  // プレイヤーの描画 (シンプルな四角形で描画)
   color("cyan");
-  box(player, 12); // 12ピクセル四方の大きな四角で描画
+  rect(player.x, player.y, 10, 10);  // 四角形でプレイヤーを描画
 
   // プレイヤーの進行方向を変更（90度回転）
   if (input.isJustPressed) {
     play("select");
-    direction = direction.rotate(PI / 2); // 90度回転
+    // 90度回転（右回り）
+    const tempX = direction.x;
+    direction.x = -direction.y;
+    direction.y = tempX;
   }
 
-  // 障害物を追加
+  // 障害物の生成と動き
   nextObstacleTicks--;
   if (nextObstacleTicks < 0) {
-    const obstaclePos = vec(rnd(10, 90), rnd(10, 90));
+    const obstaclePos = { x: rnd(10, 90), y: rnd(10, 90) };
     obstacles.push({ pos: obstaclePos, speed: rnd(0.5, 1) });
     nextObstacleTicks = rnd(30, 60) / difficulty;
   }
 
-  // 障害物を描画し、動かす
+  // 障害物の描画と動作
   color("black");
   remove(obstacles, (o) => {
-    // 障害物を下に動かす
     o.pos.y += o.speed * difficulty;
 
-    // 障害物の描画
-    box(o.pos, 5);
+    rect(o.pos.x, o.pos.y, 5, 5);  // 障害物の描画
 
     // 障害物が画面外に出たら削除
     if (o.pos.y > 100) {
@@ -87,7 +81,7 @@ function update() {
     }
 
     // 障害物に衝突したらゲームオーバー
-    if (player.distanceTo(o.pos) < 5) {
+    if (Math.hypot(player.x - o.pos.x, player.y - o.pos.y) < 5) {
       play("explosion");
       gameOver();
       return true;
