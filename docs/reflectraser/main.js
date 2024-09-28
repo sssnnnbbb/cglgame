@@ -10,7 +10,7 @@ options = {
   seed: 10,
 };
 
-const version = "1.0.1";  // バージョン番号を更新
+const version = "1.0.2";  // バージョン番号を更新
 
 let player;
 let direction;
@@ -41,14 +41,17 @@ function update() {
   // プレイヤーの移動
   player.x += speed * direction.x;
   player.y += speed * direction.y;
-  
-  // プレイヤーが画面外に出ないように位置を固定
-  player.x = clamp(player.x, 0, 99);
-  player.y = clamp(player.y, 0, 99);
 
-  // バージョン番号を画面の上に表示
+  // プレイヤーが画面外に出たらゲームオーバー
+  if (player.x < 0 || player.x > 99 || player.y < 0 || player.y > 99) {
+    play("hit");
+    gameOver();
+    return;
+  }
+
+  // バージョン番号を画面の右下に表示
   color("black");
-  text(`Version: ${version}`, 1, 50);
+  text(`Version: ${version}`, 85, 95);  // 右下にバージョン番号を表示
 
   // プレイヤーの描画 (サイズを半分に修正)
   color("cyan");
