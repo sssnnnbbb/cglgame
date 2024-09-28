@@ -10,7 +10,7 @@ options = {
   seed: 10,
 };
 
-const version = "1.0.4";  // バージョン番号を更新
+const version = "1.0.5";  // バージョン番号を更新
 
 let player;
 let direction;
@@ -49,9 +49,9 @@ function update() {
     return;
   }
 
-  // バージョン番号を画面の右下に表示 (小さめに表示するため位置調整)
+  // バージョン番号を画面の左下に表示
   color("black");
-  text(`Ver: ${version}`, 70, 98);  // 位置を右下に余裕を持って配置
+  text(`Ver: ${version}`, 5, 95);  // 左下にバージョン番号を配置
 
   // プレイヤーの描画 (サイズを半分に修正)
   color("cyan");
