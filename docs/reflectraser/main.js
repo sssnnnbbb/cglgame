@@ -1,4 +1,4 @@
-title = "reflect raiserr";
+title = "反射レーサー";
 
 description = `
 [Tap] 90度回転
@@ -46,64 +46,4 @@ function update() {
   }
 
   // プレイヤーの移動
-  player.add(vec(speed).mul(direction));
-  
-  // 壁に衝突する場合、ゲームオーバー
-  if (!player.isInRect(0, 0, 100, 100)) {
-    play("hit");
-    gameOver();
-    return;
-  }
-
-  // プレイヤーの進行方向を変更（90度回転）
-  if (input.isJustPressed) {
-    play("select");
-    direction = direction.rotate(PI / 2); // 90度回転
-  }
-
-  // 障害物を追加
-  nextObstacleTicks--;
-  if (nextObstacleTicks < 0) {
-    const obstaclePos = vec(rnd(10, 90), rnd(10, 90));
-    obstacles.push({ pos: obstaclePos, speed: rnd(0.5, 1) });
-    nextObstacleTicks = rnd(30, 60) / difficulty;
-  }
-
-  // 障害物を描画し、動かす
-  color("black");
-  remove(obstacles, (o) => {
-    // 障害物を下に動かす
-    o.pos.y += o.speed * difficulty;
-
-    // 障害物の描画
-    box(o.pos, 5);
-
-    // 障害物が画面外に出たら削除
-    if (o.pos.y > 100) {
-      return true;
-    }
-
-    // 障害物に衝突したらゲームオーバー
-    if (player.distanceTo(o.pos) < 5) {
-      play("explosion");
-      gameOver();
-      return true;
-    }
-
-    return false;
-  });
-
-  // スコアを増加させる
-  addScore(multiplier);
-  multiplier++;
-
-  // 難易度に応じてスピードを上げる
-  speed = 1.5 + difficulty * 0.5;
-}
-
-function gameOver() {
-  // ゲームオーバー処理
-  gameOverFlag = true;
-  play("lucky");
-  end(); // ゲームを終了
-}
+  player.add(vec(speed)
