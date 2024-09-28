@@ -48,7 +48,7 @@ function update() {
 
   // バージョン番号を画面の上に表示
   color("black");
-  text(`Version: ${version}`, 3, 10);
+  text(`Version: ${version}`, 1, 50);
 
   // プレイヤーの描画 (サイズを半分に修正)
   color("cyan");
