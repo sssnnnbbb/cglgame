@@ -6,10 +6,10 @@ description = `
 
 characters = [
   `
-llll
-l  l
-l  l
-llll
+  ll
+ l  l
+ l  l
+  ll
 `,
 ];
 
@@ -31,7 +31,7 @@ let gameOverFlag;
 function update() {
   if (!ticks) {
     // プレイヤーキャラクターの初期位置と状態
-    player = vec(50, 50);
+    player = vec(50, 50); // 画面中央に初期化
     direction = vec(1, 0); // 右方向に進む
     speed = 1.5;
     obstacles = [];
@@ -50,7 +50,7 @@ function update() {
   
   // プレイヤーキャラクターの描画
   color("black");
-  char("a", player); // キャラクターを描画
+  char("a", player); // "a"キャラクターを描画
 
   // 壁に衝突する場合、ゲームオーバー
   if (!player.isInRect(0, 0, 100, 100) && ticks > 1) {
