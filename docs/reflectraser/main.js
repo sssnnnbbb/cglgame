@@ -10,7 +10,7 @@ options = {
   seed: 10,
 };
 
-const version = "1.0.5";  // バージョン番号を更新
+const version = "1.0.6";  // バージョン番号を更新
 
 let player;
 let direction;
@@ -69,7 +69,7 @@ function update() {
   // 障害物の生成と動き
   nextObstacleTicks--;
   if (nextObstacleTicks < 0) {
-    const obstaclePos = { x: rnd(10, 90), y: rnd(10, 90) };
+    const obstaclePos = { x: rnd(10, 90), y: 0 };  // 障害物のY座標を0（画面上）に設定
     obstacles.push({ pos: obstaclePos, speed: rnd(0.5, 1) });
     nextObstacleTicks = rnd(30, 60) / difficulty;
   }
@@ -77,7 +77,7 @@ function update() {
   // 障害物の描画と動作
   color("black");
   remove(obstacles, (o) => {
-    o.pos.y += o.speed * difficulty;
+    o.pos.y += o.speed * difficulty;  // 障害物が下に降る動き
 
     rect(o.pos.x, o.pos.y, 5, 5);  // 障害物の描画
 
