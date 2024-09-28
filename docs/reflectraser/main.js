@@ -10,7 +10,7 @@ options = {
   seed: 10,
 };
 
-const version = "1.0.0";  // バージョン番号の設定
+const version = "1.0.1";  // バージョン番号を更新
 
 let player;
 let direction;
@@ -46,16 +46,13 @@ function update() {
   player.x = clamp(player.x, 0, 99);
   player.y = clamp(player.y, 0, 99);
 
-  // プレイヤーの座標をデバッグ用に確認
-  console.log(`Player Position: (${player.x}, ${player.y})`);
-
   // バージョン番号を画面の上に表示
   color("black");
   text(`Version: ${version}`, 3, 10);
 
-  // プレイヤーの描画 (シンプルな四角形で描画)
+  // プレイヤーの描画 (サイズを半分に修正)
   color("cyan");
-  rect(player.x, player.y, 10, 10);  // 四角形でプレイヤーを描画
+  rect(player.x, player.y, 5, 5);  // 四角形のサイズを5x5に設定
 
   // プレイヤーの進行方向を変更（90度回転）
   if (input.isJustPressed) {
