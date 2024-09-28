@@ -1,4 +1,4 @@
-title = "反射レーサー";
+title = "reflectRacer";
 
 description = `
 [Tap] 90度回転
