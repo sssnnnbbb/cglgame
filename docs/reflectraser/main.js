@@ -33,7 +33,7 @@ function update() {
     // プレイヤーキャラクターの初期位置と状態
     player = vec(50, 50); // 画面中央に初期化
     direction = vec(1, 0); // 右方向に進む
-    speed = 1.5;
+    speed = 0.1;
     obstacles = [];
     nextObstacleTicks = 0;
     score = 0;
